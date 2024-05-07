@@ -1,10 +1,19 @@
-from flask import Flask
+from flask import Flask, jsonify, render_template
 
-app= Flask(__name__) 
+app = Flask(__name__)
 
-@app.route('/') 
+data = [{'title': 'hello'}]
+
+
+@app.route('/')
 def home():
-  return "Hello World" 
+  return render_template('index.html')
 
-if __name__=='__main__' :
+
+@app.route('/api/json')
+def json():
+  return jsonify(data)
+
+
+if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
